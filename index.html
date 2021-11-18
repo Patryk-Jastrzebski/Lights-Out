@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gra Lights Out</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="script.js"></script>
+</head>
+<body onload="resizeBoard(5)">
+    <span id="square" class="board"></span>
+    <div class="column">
+        <br>
+        <h2>Menu</h2>
+        <div class="clickButtons">
+            <label>
+                <input type="radio" name="check" checked>
+                <img onclick="changeChoice(1)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAABGCAIAAAD+THXTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIaSURBVGhD7de/axpxHMbxYicFUURE1CH/gHRw06k4CV3axS5CJUGlEFBTaEQSBAvZJFAxUK5QHZpShyz9sQQyZAlkyCGEdomc0kAMIRHaoqWIOeQzOOSuH8nJ9Rue1/Z4HHzf3CHcvfGdgyQRIElXq9U6YpNlmW4zmmFJ1Wo1EAg8YLPb7bFYjG42lGFJlUolm83SYIhEItFolIahkKQNSUiaBZK0IQlJs0CSNiQhaRZI0oYkk5K63e4JW7FYTCaTNBhCoVA4HKbB0Ol06Fj/opnUbDZ9Pt8Cm8vlcrvdNBicTqfD4aDB4PV6G40GHU6XZlK9Xk8kEjQYZn3x1KdaLpdpMGQymVqtRkPXvJNGP6Slla9DWlNETBocfdj60h5evnue2x1cydtvPit0ZULEpNH5wduXi0trueVMIZdMv9r59ouuTAj64v38/mnzxeOH0Wfr0v7pH/qRiJj0e3c1Ft/Ya78vru8df8w/evr6mK5MCPz3oGw+WdwZ0JoibtJ42D6Uz0Y0pgicpAVJSLoRkpCEJBWSbqImxePxCzb1fOl0mgZDPp8vFAo0GNRP5tsm9fv9YDCofqsyqV+pfr+fBoPNZrNarTR4JEmiw+nSTJo3E168eUMSkkyBJCSZAklIMgWSkGQKJCHJFGpSqVT6y5ZKpf73JEVRLBbLfTaPx9Pr9ehmXaYlzQ+SRIAkESBJBEgSwZ1LGo+vAcVT3oMw0eP6AAAAAElFTkSuQmCC"></label>
+            <label>
+                <input type="radio" name="check" >
+                <img onclick="changeChoice(2)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAABGCAIAAAD+THXTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJ9SURBVGhD7dfPixJhGAdwdTdTUw/SauKl9jIRwRwMsha8dOsQetjNQ7AsGEFsIJGoHewg4sXIQ1AYndsQSQi2EBbsL7ClrIOGBS5BECyorfmzN3yIkGDecGbysedzUL68qPMVHfhqR6ORZr7o4HmOzGGlaX94vV6vUqlA4GA0GgVBgKCMaSsFg8FisWiz2SBLqVaroVAomUxCVgKrNA1WKZvNQuDgdDrD4TAEZdDtAQOqhAFVwoAqYUCVMKBKGFAlDOaw0uQEZLFer0PgEIvFRFEMBAKQpXg8Hp/PF41GIUthK5hNLAh8JislEolMJmO1WiFLabfbw+HQYrFAltJqtdij2WweR0n9fj+Xy7EvAjKPnzvwN5FIJJVKQeDwt6vW7/fn83kIHLxeb6lUgsBHmf/ScO/x1Vsvv0NSmdyVOq+fPnxR75kW9cNDo/3drUfbnwZwpBa5K+ldx/Wvkpv3dhcOdm7ffPBhafnoAhypRe5KuqWzaxv+0wcf31Y/W1aubFw8eQROVCN3pW87sbU7b8Trq+dX1i9bn11bv/+uD0dqkbuS6UJqeyvq1X15v7e/vHr3+ZPNU4twpBa5K43pjl2K3Tinh6QyZSppDp84IzoUem8p/+hjlUSVMKBKGFAlDP5Qia26r9w6nQ5bdRA4dLvdZrMJgQObgHBZ3CZXbTweT6fTbB5DlsImLbtKg8EAWYrL5Wo0GlqtFrIUt9tdKBRMJhNkHuMl+IvSq1YFdHvAgCphQJUwoEoYUCUMqBIGVAmD/6PSYDBgW5ITm4DwspkxuWprtZogCPyr0+FwlMtlu90OeQZMVpoDdHvAgCphQJUwoEoYUKXZp9H8AAYOoRsaZWEFAAAAAElFTkSuQmCC"></label>
+            <label>
+                <input type="radio" name="check" >
+                <img onclick="changeChoice(3)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAABGCAIAAAD0ENuBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKzSURBVGhD7dnPixJhGAdwm9L1V4GHNaFLdQoUVtlAaw/ePYSFbRdxkYIkCiTBZbukSAdBLSEoyIsHoQTdg9B60IN/gS12UqI9uDu4spKCqThmL9tDy4DrzO7O9Dbwfi7y5fXHdwZfZh49N51OZZJFwaM0kfb4SLs9a9cGAoH9/X2K4nVI6IU6nS6ZTELmMhgM/H7/cDiEzGU0GlkslvX1dcizsNprNJp4PK5SqSDPxTCMz+cbj8eQudA0bTKZEokEZC7NZjOdTtfrdcgzofZ/abXaXq8HgQs6N3K5HAIPe3t7BoMBAg+1Ws1oNEI4Btm1+JD2+JD2+JD2+JD2+JD2+JD2+Ei7PWs6MZvNNptNoVBAnmsymRQKBafTCZlLv9+vVCoOhwMyl4ODg1arVSqVIM/Caq9Wq0OhkFKphDwXmq2CwSD/Wanb7cZisUgkApkLmmZyuVyj0YA80+GMAgSZrSbN1KPA1hDSkf99thp++fR+6/tYfUHxSz79sf3xw2dYEI2Q7RVXrioqr56+3j4/KL94/u7b4nVYEI2Q7alF66r3rmmw87VBX1xxex03YEE0Qrb/Wd5YfVlbenL/9srag0ubj9fewoJ44Pt/SJhdu/Pm3sPNAaQj0vhFhDLc2Xh2i9cl48yEby9buHZz6bII7zvDv/kUsZD2+JD2+JD2+Ei7PWs6sdvtaLZC13/Ic6HZKpPJeDweyFzQdJLP571eL2Qu6Plotspms5BnYZ37aDSKbnUW+EED5O7uLgQe0NHSNA2BB71eHw6Hodlx/tzunMJJ/7eqVqsURUEQCNm1+JD2+JD2+JD2+JD2+JD2+JD2+Ei7PWu2OhGGYZaXl91uN2Qu7XY7lUp1Oh3IQjh9e6RYLJbLZQg8uFwuq9UKQQhnao8d2bX4kPb4kPb4kPa4yGS/AbbnjOb0lbZLAAAAAElFTkSuQmCC"></label>
+        </div>
+        <br>
+
+        <div class="sizeButtons">
+            <button onclick="resizeBoard(5)">5x5</button>
+            <button onclick="resizeBoard(6)">6x6</button>
+            <button onclick="resizeBoard(7)">7x7</button>
+        </div>
+        <br>
+        <div class="solveButton">
+            <button onclick="solve()" title="Można rozwiązać tylko tuż po wylosowaniu planszy.">Rozwiaz</button>
+        </div>
+    </div>
+
+
+</body>
+</html>
